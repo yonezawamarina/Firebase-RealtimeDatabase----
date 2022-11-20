@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Firebase</title>
+<style>
+  #output {
+      background: pink;
+      height: 300px;
+      overflow: scroll;
+  }
+  #itd{
+    display: flex;
+  }
+  #scene2{
+  display: none;
+}
+</style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- コンテンツ表示画面 -->
+<div>
+       <!-- 自己紹介 -->
+    <div id="scene1">
+        <div id="itd">
+            <img src="himawari.jpeg" alt="">
+            <div>
+                <p>そら(チワワ♂)</p>
+                <p>10歳</p>
+            </div>
+        </div>
+
+        <!-- img選択 -->
+       <!-- <form id="form"> -->
+         <!-- <input id="input" type="file"/> -->
+         <!-- <button type="submit">File Uproad</button> -->
+
+       <!-- </form> -->
+
+ 
+
+
+        <button id="button">ボタン</button>
+    </div>
+
+
+
+    <div id="scene2">
+        <div>名前<input type="text" id="uname"></div>
+        <div>
+            <textarea id="text" cols="30" rows="10"></textarea>
+            <button id="send">送信</button>
+        </div>
+        <div id="output"></div>
+    </div>
+</div>
+<!--/ コンテンツ表示画面 -->
+
+
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- JQuery -->
+
+
+<!--** 以下Firebase **-->
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
+    import { getDatabase, ref, push, set, onChildAdded, remove,onChildRemoved } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
+    // import { getStorage, ref, listAll } from "firebase/storage";//strage用に追加//エラーになる
+    // import{
+    //   ref,
+    //   uploadBites,
+    // }from"https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
+    import{storage}from"/firebase.js";
+    
+
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyA2N_HQfzylteSFLMPOHZ0iDHQIwVgTonc",
+      authDomain: "dev245-30f87.firebaseapp.com",
+      projectId: "dev245-30f87",
+      storageBucket: "dev245-30f87.appspot.com",
+      messagingSenderId: "334115949641",
+      appId: "1:334115949641:web:07f634dfa72e70dfec8398"
+    };
+  
+    // 画面遷移//
+    $("#button").on("click" , function(){
+     $("#scene1").css("display", "none");
+     $("#scene2").css("display", "block");
+    });
+
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    //この辺りにかいておきます
+
+    const db = getDatabase(app);
+    const dbRef =  ref(db,'dev245');
+
+   // 送信処理を記述
+   $('#send').on('click', function () {
+            // id="uname" の場所を取得します🤗
+            const uname = $('#uname').val();
+            console.log(uname, 'aaa')
+            // id="text" の場所を取得します🤗
+            const text = $('#text').val();
+            console.log(text,'ssss');
+
+            // 取得できているか表示の確認をしましょう！
+            // これ必須！
+            alert(uname + text);
+
+           //データの塊を作る
+           //msgという名前で塊を作る
+           //unameという鍵の名前
+           //textという鍵の名前
+           //作成したデータの塊をfirebasrに送信する　こてが保存
+
+    const msg = {
+        uname: uname,
+        text: text,
+    }
+
+    //保存のコード
+    const newPostRef = push(dbRef)
+    //
+    set(newPostRef,msg);//firebaseの登録できる場所に保存するイメージ
+
+   //送信後に入力欄をからにｓましょう
+   $('#uname').val("");
+   $('#text').val("");
+
+   //これを使うとどうなる？
+   $("#uname").focus();
+      
+    //send送信イベントこの下消さない   
+    })
+
+   //受信処理を記述
+  onChildAdded(dbRef,function(data){
+   //ここから受信処理が始まります
+
+   //登録されたデータを取得します
+  const msg = data.val();
+  console.log(msg,'取得したデータの塊')
+  const key = data.key;
+  console.log(key,'データの塊にアクセス')
+
+  const today = new Date();
+  let year = today.getFullYear();
+  let month = today.getMonth() + 1;
+  let day = today.getDate();
+  let hour = today.getHours();
+  let min = today.getMinutes();
+  let sec = today.getSeconds();
+  
+
+  //es6のテンプレートリテラル
+  let h = `
+       <div class="msg">
+         <p>${msg.uname}</p>
+         <p>${msg.text}</p>
+         <button id="delete">削除</button>
+         <p>${year}年${month}月${day}日${hour}:${min}:${sec}</p>
+      </div>  
+  `;
+   //htmlに埋め込みましょう
+  // appendというjqueryのおまじないを使います
+   $("#output").append(h);
+    
+  // #deleteを押したらdbからデータを削除！//全データが着てしまう///
+   $(document).on("click", "#delete", function () {
+     console.log(data.key);
+     remove(ref(db, "dev245/" + data.key));
+
+
+
+  });
+});
+
+
+  </script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
