@@ -1,0 +1,83 @@
+
+/* body{
+  background-color: cornsilk;
+} */
+
+
+/* トップ画面 */
+.container {
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.square {
+  width: 1500px;
+  height: 300px;
+  background: yellow;
+}
+
+#btn {
+  margin-top: 20px;
+  color: #000;
+  background-color: #fff100;
+  border-bottom: 5px solid #ccc100;
+}
+
+#btn--yellow:hover {
+  margin-top: 3px;
+  color: #000;
+  background: #fff20a;
+  border-bottom: 2px solid #ccc100;
+}
+
+#file {
+  color: #000;
+  background-color: #fff100;
+  border-bottom: 5px solid #ccc100;
+}
+
+#file--yellow:hover {
+  margin-top: 3px;
+  color: #000;
+  background: #fff20a;
+  border-bottom: 2px solid #ccc100;
+}
+
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+  right: 30px;
+  bottom: 50px;
+}
+.absolute2 {
+  position: absolute;
+  right: 200px;
+  bottom: 50px;
+} 
+.absolute3 {
+  position: absolute;
+  left: 30px;
+  bottom: 50px;
+} 
+.absolute4 {
+  position: absolute;
+  left: 200px;
+  bottom: 50px;
+}
+ .absolute5 {
+  position: absolute;
+  left: 550px;
+  bottom: 30px;
+} 
+.absolute6 {
+  position: absolute;
+  top: 20px;
+  left: 500px;
+  bottom: 50px;
+} 
+.content img {
+  mix-blend-mode: multiply;
+}

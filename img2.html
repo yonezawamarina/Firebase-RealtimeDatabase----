@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>storage</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+      }
+      /* .disN {
+        display: none;
+      } */
+      .disB {
+        display: block;
+      }
+      img {
+        height: 300px;
+        width: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div><input type="file" name="" id="fileButton" /></div>
+        <input type="text" id="sitei"></input>
+        <button id="up">アップロード</button>
+        <button id="down" class="disN">ダウンロード</button>
+      </div>
+      <div>
+        <p>
+          ダウンロードボタンをクリックした後、<br />数秒後に画像が表示されます。
+        </p>
+        <img id="image" src="" alt="ダウンロード画像です" />
+      </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <script>
+      var firebaseConfig = {
+        apiKey: 'AIzaSyA2N_HQfzylteSFLMPOHZ0iDHQIwVgTonc',
+      storageBucket: 'dev245-30f87.appspot.com',
+      projectId: 'dev245-30f87',
+        authDomain: "dev245-30f87.firebaseapp.com",
+        storageBucket: "dev245-30f87.appspot.com",
+        messagingSenderId: "dev245-30f87",
+        appId: "dev245-30f87",
+        measurementId: "dev245-30f87",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-storage.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

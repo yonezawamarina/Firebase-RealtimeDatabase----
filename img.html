@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+      <div class="relative">
+          <div class="container">
+          <div class="square"></div>
+          </div>
+
+        <div class="content">
+          <img src="pizza.png"  width=140px class="absolute">
+          <img src="salada.png"  width=140px class="absolute2">
+          <img src="sandwich.png"  width=140px class="absolute3">
+          <img src="curry.png"  width=140px class="absolute4">
+          <img src="enjoycook.jpg"  width=300px class="absolute5">
+          <h1 class="absolute6">〇〇〇〇〇〇</h1>
+        </div>
+      
+      
+      </div>
+        
+
+
+
+
+      <form>
+        <input id="file" type='file' accept='image/*' multiple='multiple' name='imgs[]'>
+        <button id="btn" type='submit' >送信</button>
+      </form>
+
+
+
+
+
+
+
+      <script src='https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js'></script>
+      <script src='https://www.gstatic.com/firebasejs/7.5.0/firebase-storage.js'></script>
+      <script>
+        //firebase初期化
+        var firebaseConfig = {
+          apiKey: 'AIzaSyA2N_HQfzylteSFLMPOHZ0iDHQIwVgTonc',
+          projectId: 'dev245-30f87',
+          storageBucket: 'dev245-30f87.appspot.com',
+        }
+        firebase.initializeApp(firebaseConfig);
+        //formのsubmitにイベン  ト設定
+        var form = document.querySelector('form');
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var imgs = form.querySelector('input');
+          var uploads = [];
+          for (var file of imgs.files) {
+              //選択したファイルのファイル名を使うが、場合によってはかぶるので注意
+            var storageRef = firebase.storage().ref('form-uploaded/' + file.name);
+            uploads.push(storageRef.put(file));
+          }
+          //すべての画像のアップロード完了を待つ
+          Promise.all(uploads).then(function () {
+            console.log('アップロード完了');
+          });
+        });
+      </script>
+
+
+
+</body>
+</html>
