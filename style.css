@@ -17,32 +17,60 @@
   background: yellow;
 }
 
-#btn {
+#fileButton {
   margin-top: 20px;
   color: #000;
   background-color: #fff100;
   border-bottom: 5px solid #ccc100;
 }
 
-#btn--yellow:hover {
+#fileButton:hover {
   margin-top: 3px;
   color: #000;
   background: #fff20a;
   border-bottom: 2px solid #ccc100;
 }
 
-#file {
+#sitei {
+  margin-top: 20px;
+  color: #000;
+  background-color: gainsboro;
+  border-bottom: 5px solid #ccc100;
+}
+
+#up {
+  margin-top: 20px;
   color: #000;
   background-color: #fff100;
   border-bottom: 5px solid #ccc100;
 }
 
-#file--yellow:hover {
+#up:hover {
   margin-top: 3px;
   color: #000;
   background: #fff20a;
   border-bottom: 2px solid #ccc100;
 }
+
+#down {
+  margin-top: 20px;
+  color: #000;
+  background-color: #fff100;
+  border-bottom: 5px solid #ccc100;
+}
+
+#down:hover {
+  margin-top: 3px;
+  color: #000;
+  background: #fff20a;
+  border-bottom: 2px solid #ccc100;
+}
+
+
+
+
+
+
 
 .relative {
   position: relative;
@@ -81,3 +109,4 @@
 .content img {
   mix-blend-mode: multiply;
 }
+
