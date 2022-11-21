@@ -5,6 +5,17 @@
 
 
 /* トップ画面 */
+#imgcontainer{
+  justify-content: flex-start;  /* 水平方向は左に寄せる */
+  /* align-items: center; */
+  width: 100px;
+  flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+
 .container {
   align-items: center;
   flex-direction: column;
@@ -12,25 +23,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  width: 200px;
 }
-
-/* html, */
-      /* body {
-        height: 100%;
-        margin: 0;
-      } */
-/*      
-      .disB {
-        display: block;
-      } */
-      img {
-        height: 300px;
-        width: auto;
-      }
-
-
-
 .square {
   width: 1500px;
   height: 300px;
@@ -45,17 +38,24 @@
 }
 
 #fileButton:hover {
-  /* margin-top: 3px; */
+  margin-top: 3px;
   color: #000;
   background: #fff20a;
   border-bottom: 2px solid #ccc100;
 }
 
 #sitei {
-  /* margin-top: 20px; */
+  margin-top: 3px;
   color: #000;
   background-color: gainsboro;
   border-bottom: 5px solid #ccc100;
+}
+
+#sitei:hover {
+  margin-top: 3px;
+  color: #000;
+  background: #fff20a;
+  border-bottom: 2px solid #ccc100;
 }
 
 #up {
@@ -73,7 +73,7 @@
 }
 
 #down {
-  margin-top: 20px;
+  margin-top: 3px;
   color: #000;
   background-color: #fff100;
   border-bottom: 5px solid #ccc100;

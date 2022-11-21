@@ -73,3 +73,12 @@ console.log(file)
     document.getElementById("image").src = downloadURL;
   });
 });
+
+$("#down").on("click" , function(){
+  $("#imgcontainer").css("display", "none");
+  // $("#scene4").css("display", "block");
+ });
+ 
+ $("#imgebtn").on("click" , function(){
+   
+ })
