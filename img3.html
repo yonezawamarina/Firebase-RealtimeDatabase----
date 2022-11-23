@@ -14,8 +14,17 @@
 <body>
 
 <!-- コンテンツ表示画面 -->
+
+    <!-- <div>名前<input type="text" id="uname"></div> -->
+
 <div>
-    <div>名前<input type="text" id="uname"></div>
+  <div>
+    <select id="title">
+      <option value="memo1">memo1</option>
+      <option value="memo2">memo2</option>
+      <option value="memo3">memo3</option>
+    </select>    
+  </div>
     <div>
         <textarea id="text" cols="30" rows="10"></textarea>
         <button id="send">送信</button>
@@ -35,7 +44,7 @@
 <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
-    import { getDatabase, ref, push, set, onChildAdded, remove,onChildRemoved } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+    import { getDatabase, ref, push, set, onValue, onChildAdded, remove,onChildRemoved } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
 
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -60,57 +69,31 @@
 
    // 送信処理を記述
    $('#send').on('click', function () {
-            // id="uname" の場所を取得します🤗
-            const uname = $('#uname').val();
-            console.log(uname, 'aaa')
-            // id="text" の場所を取得します🤗
-            const text = $('#text').val();
-            console.log(text,'ssss');
+            const msg = {
+              title : $('#title').val(),
+              text :$('#text').val()
+            }
+            const dbRef = ref( db, "kadai202211272"+"/memo/"+$("#title").val() ); //Firebaseの構造作る
+            set(dbRef, msg);  //DBに値をセットする
+   //send送信イベントこの下消さない   
+    });
 
-            // 取得できているか表示の確認をしましょう！
-            // これ必須！
-            alert(uname + text);
 
-           //データの塊を作る
-           //msgという名前で塊を作る
-           //unameという鍵の名前
-           //textという鍵の名前
-           //作成したデータの塊をfirebasrに送信する　こてが保存
+   //memo123を切り替えた時の動作
+   $("#title").on("change",function(){
+            const dbRef = ref( db, "kadai202211272"+"/memo/"+$(this).val() ); //Firebaseの構造作る
+            onValue(dbRef, function(data){   
+                const msg  = data.val();    //オブジェクトデータを取得し、変数msgに代入
+                console.log(msg);
+                // const key  = data.key;      //データのユニークキー（削除や更新に使用可能）
+                $("#text").val(msg.text);
+            });
+        });
 
-    const msg = {
-        uname: uname,
-        text: text,
-    }
 
-    //保存のコード
-    const newPostRef = push(dbRef)
-    //
-    set(newPostRef,msg);//firebaseの登録できる場所に保存するイメージ
-
-   //送信後に入力欄をからにｓましょう
-   $('#uname').val("");
-   $('#text').val("");
-
-   //これを使うとどうなる？
-   $("#uname").focus();
-      
-    //send送信イベントこの下消さない   
-    })
-
-   //受信処理を記述
-  onChildAdded(dbRef,function(data){
-   //ここから受信処理が始まります
-
-   //登録されたデータを取得します
-  const msg = data.val();
-  console.log(msg,'取得したデータの塊')
-  const key = data.key;
-  console.log(key,'データの塊にアクセス')
-
-  //es6のテンプレートリテラル
-  let h = `
+ let h = `
        <div class="msg">
-         <p>${msg.uname}</p>
+         <p>${msg.title}</p>
          <p>${msg.text}</p>
       </div>  
   `;
@@ -118,7 +101,55 @@
   // append
    $("#output").append(h);
     
-  })
+
+
+
+
+
+
+
+
+    // const msg = {
+    //     uname: uname,
+    //     text: text,
+    // }
+
+    //保存のコード
+    // const newPostRef = push(dbRef)
+    //
+    // set(newPostRef,msg);//firebaseの登録できる場所に保存するイメージ
+
+   //送信後に入力欄をからにｓましょう
+  //  $('#uname').val("");
+  //  $('#text').val("");
+
+   //これを使うとどうなる？
+  //  $("#uname").focus();
+      
+
+
+   //受信処理を記述
+  // onChildAdded(dbRef,function(data){
+   //ここから受信処理が始まります
+
+   //登録されたデータを取得します
+  // const msg = data.val();
+  // console.log(msg,'取得したデータの塊')
+  // const key = data.key;
+  // console.log(key,'データの塊にアクセス')
+
+  //es6のテンプレートリテラル
+  // let h = `
+  //      <div class="msg">
+  //        <p>${msg.uname}</p>
+  //        <p>${msg.text}</p>
+  //     </div>  
+  // `;
+   //htmlに埋め込みましょう
+  // append
+  //  $("#output").append(h);
+    
+  // })
   </script>
 
 

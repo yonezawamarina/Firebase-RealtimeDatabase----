@@ -83,5 +83,3 @@ $("#down").on("click" , function(){
  $("#imgebtn").on("click" , function(){
   window.open("img3.html")
  })
-
- 
