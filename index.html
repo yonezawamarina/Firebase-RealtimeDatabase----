@@ -3,19 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>storage</title>
+    <title>kadai</title>
     <style>
       
     </style>
     <link rel="stylesheet" href="style.css">
   </head>
   <body class="body1">
-    <div class="relative"><!-- // //top画面 -->    
+    <div class="relative"><!-- // //top画面 -->   
+
         <div class="container">
-        <div class="square"></div>
+          <div class="square"></div>
         </div>
 
-    
         <div class="content">
           <img src="img3/pizza.png"  width=140px class="absolute">
           <img src="img3/humberg.png"  width=140px class="absolute2">
@@ -24,9 +24,11 @@
           <img src="img3/enjoycook.jpg"  width=300px class="absolute5">
           <h1 id="absolute6">がんばって作りましたでしょう。</h1>
         </div>
+
     </div>
 
-     <div id="imgcontainer"><!-- 画像選択 -->
+    <!-- 画像選択 -->
+     <div id="imgcontainer">
       <div><input type="file" name="" id="fileButton" /></div>
         <input type="text" id="sitei"></input>
         <button id="up">アップロード</button>
@@ -35,40 +37,17 @@
       <div id="imgebtn"> 
          <img id="image" width="500px "src="" alt="" />
       </div>
-   <div id="abc">ookoko   </div>
     
 
-   
-
-
-
+    <!-- FIrebase -->
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-storage.js"></script>
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="./jquery.arctext.js" type="text/javascript"></script>
+    <!-- js読み込み -->
     <script src="main2.js"></script>
     <script>
-
-    $(function() {
-        var $allMsg = $('#absolute6');
-        var $wordList = $('#absolute6').html().split("");
-        $('#absolute6').html("");
-        $.each($wordList, function(idx, elem) {
-            var newEL = $("<span/>").text(elem).css({ opacity: 0 });
-            newEL.appendTo($allMsg);
-            newEL.delay(idx * 300);
-            newEL.animate({ opacity: 1 }, 1100);
-        });
-    });
-
-
- 
-
-
-
-
-
  
       var firebaseConfig = {
     apiKey: "AIzaSyBAj7nBUECGvyG-hJPfY1KMziUOx5JVO2o",
@@ -83,14 +62,6 @@
       firebase.initializeApp(firebaseConfig);
       firebase.analytics();
 
-
-
- 
-
     </script>
-    <!-- <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-storage.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="./jquery.arctext.js" type="text/javascript"></script>
-    <script src="main2.js"></script> -->
   </body>
 </html>

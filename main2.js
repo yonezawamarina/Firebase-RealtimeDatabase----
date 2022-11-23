@@ -1,4 +1,21 @@
-//アップロード
+
+  //////////// ページ１///////////
+  
+  $(function() {
+      var $allMsg = $('#absolute6');
+      var $wordList = $('#absolute6').html().split("");
+      $('#absolute6').html("");
+      $.each($wordList, function(idx, elem) {
+          var newEL = $("<span/>").text(elem).css({ opacity: 0 });
+          newEL.appendTo($allMsg);
+          newEL.delay(idx * 300);
+          newEL.animate({ opacity: 1 }, 1100);
+      });
+  });
+
+
+
+/////////////// 画像表示/////////////////////
 const up = document.getElementById("up");
 up.addEventListener("click", () => {
   //ファイルの取得
@@ -74,12 +91,18 @@ console.log(file)
   });
 });
 
+////////////画像表示ここまで////////////////////////////
+
 // 画像表示と同時にボタンが非表示になる
 $("#down").on("click" , function(){
   $("#imgcontainer").css("display", "none");
  });
  
-//  次のページへ
+// 画像クリックで次のページへ
  $("#imgebtn").on("click" , function(){
-  window.open("img3.html")
+  window.open("index2.html")
  })
+
+/////////ページ１ここまで//////////////////////////////////////
+
+
