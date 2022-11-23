@@ -5,16 +5,61 @@
 
 
 /* トップ画面 */
+/* Webフォントを定義 */
+@font-face {
+  font-family: 'myfont'; /* フォント名 */
+  /* フォーマットごとにパスを指定 */
+  src: url('../fonts/myfont.ttf') format('truetype');
+  src: url('../fonts/myfont.woff') format('woff');
+}
+.body1{
+  background-color: beige;
+}
+
+#abc {
+  font-family: 'myfont', sans-serif;
+} 
+
+.relative {
+  animation: fadeIn 2s ease 0s 1 normal;
+  -webkit-animation: fadeIn 10s ease 0s 1 normal;
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0}
+  100% {opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity: 0}
+  100% {opacity: 1}
+}
+
+
 #imgcontainer{
-  justify-content: flex-start;  /* 水平方向は左に寄せる */
-  /* align-items: center; */
-  width: 100px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  /* background: #f0f7ff; */
+  border: dashed 2px #5b8bd0;
+  /* width: 300px; */
+}
+
+
+#imgebtn{
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
-
 
 .container {
   align-items: center;
@@ -120,13 +165,38 @@
   left: 550px;
   bottom: 30px;
 } 
-.absolute6 {
+#absolute6 {
   position: absolute;
   top: 20px;
-  left: 500px;
+  left: 450px;
   bottom: 50px;
+  /* opacity:0; */
 } 
+.a{
+  opacity: 0;
+}
 .content img {
   mix-blend-mode: multiply;
 }
 
+
+/* scene2 */
+.topmemo{
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.body2{
+  background-color: #fff100;
+}
+#title{
+  width: 300px;
+  height: 40px;
+}
+
+#output1{
+  background-color: aliceblue;
+  width: 500px;
+}

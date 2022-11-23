@@ -1,3 +1,5 @@
+
+
 //アップロード
 const up = document.getElementById("up");
 up.addEventListener("click", () => {
@@ -56,6 +58,9 @@ up.addEventListener("click", () => {
     }
   );
 });
+
+
+
 //ダウンロード
 const down = document.getElementById("down");
 down.addEventListener("click", () => {
@@ -73,6 +78,14 @@ console.log(file)
     document.getElementById("image").src = downloadURL;
   });
 });
+
+
+$("#absolute6").arctext({
+  radius: 300
+});
+
+
+
 
 // 画像表示と同時にボタンが非表示になる
 $("#down").on("click" , function(){

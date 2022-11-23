@@ -11,13 +11,14 @@
   }
       </style>
 </head>
-<body>
+<link rel="stylesheet" href="style.css">
+<body class="body2">
 
 <!-- コンテンツ表示画面 -->
 
     <!-- <div>名前<input type="text" id="uname"></div> -->
 
-<div>
+<div class="topmemo">
   <div>
     <select id="title">
       <option value="memo1">memo1</option>
@@ -26,10 +27,12 @@
     </select>    
   </div>
     <div>
-        <textarea id="text" cols="30" rows="10"></textarea>
+        <textarea id="text" cols="50" rows="20"></textarea>
         <button id="send">送信</button>
     </div>
-    <div id="output"></div>
+    <div id="output1"></div>
+    <!-- <div id="output2"></div>
+    <div id="output3"></div> -->
 </div>
 <!--/ コンテンツ表示画面 -->
 
@@ -44,7 +47,7 @@
 <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
-    import { getDatabase, ref, push, set, onValue, onChildAdded, remove,onChildRemoved } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+    import { getDatabase, ref, push, set, onValue, onChildAdded, remove,onChildRemoved,serverTimestamp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
 
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -67,39 +70,84 @@
     const db = getDatabase(app);
     const dbRef =  ref(db,'kadai202211272');
 
-   // 送信処理を記述
-   $('#send').on('click', function () {
+
+// 送信処理を記述
+    $('#send').on('click', function () {
+            const  title =  $('#title').val();
+            console.log(title,"aaa")
+            const text = $('#text').val();
+            console.log(text,"hhh")
+
             const msg = {
-              title : $('#title').val(),
-              text :$('#text').val()
+              title: title,
+              text: text,
             }
             const dbRef = ref( db, "kadai202211272"+"/memo/"+$("#title").val() ); //Firebaseの構造作る
             set(dbRef, msg);  //DBに値をセットする
    //send送信イベントこの下消さない   
+           
     });
 
 
    //memo123を切り替えた時の動作
    $("#title").on("change",function(){
-            const dbRef = ref( db, "kadai202211272"+"/memo/"+$(this).val() ); //Firebaseの構造作る
-            onValue(dbRef, function(data){   
+   const dbRef = ref( db, "kadai202211272"+"/memo/"+$(this).val() ); //Firebaseの構造作る
+              onValue(dbRef, function(data){   
                 const msg  = data.val();    //オブジェクトデータを取得し、変数msgに代入
                 console.log(msg);
-                // const key  = data.key;      //データのユニークキー（削除や更新に使用可能）
+                const key  = data.key;      //データのユニークキー（削除や更新に使用可能）
                 $("#text").val(msg.text);
             });
         });
 
 
- let h = `
+
+     //受信処理を記述
+  onChildAdded(dbRef,function(data){
+   //ここから受信処理が始まります
+
+   //登録されたデータを取得します
+  const msg = data.val();
+  console.log(msg,'取得したデータの塊')
+  const key = data.key;
+  console.log(key,'データの塊にアクセス')
+
+  const today = new Date();
+  let year = today.getFullYear();
+  let month = today.getMonth() + 1;
+  let day = today.getDate();
+  let hour = today.getHours();
+  let min = today.getMinutes();
+  let sec = today.getSeconds();
+
+
+  //es6のテンプレートリテラル
+  let h = `
        <div class="msg">
-         <p>${msg.title}</p>
          <p>${msg.text}</p>
+         <p>${msg.title}</p>
+         <button id="delete">削除</button>
+         <p>${year}年${month}月${day}日${hour}:${min}:${sec}</p>
       </div>  
   `;
    //htmlに埋め込みましょう
   // append
-   $("#output").append(h);
+   $("#output1").append(h);
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
 
