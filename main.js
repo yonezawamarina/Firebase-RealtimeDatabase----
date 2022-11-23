@@ -74,11 +74,12 @@ console.log(file)
   });
 });
 
+// 画像表示と同時にボタンが非表示になる
 $("#down").on("click" , function(){
   $("#imgcontainer").css("display", "none");
-  // $("#scene4").css("display", "block");
  });
  
+//  次のページへ
  $("#imgebtn").on("click" , function(){
-   
+  window.open("img3.html")
  })
