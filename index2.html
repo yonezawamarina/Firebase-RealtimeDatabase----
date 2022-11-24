@@ -69,7 +69,7 @@
 
     const db = getDatabase(app);
     const dbRef =  ref(db,'kadai202211272');
-
+    var msg = "";
 
 // 送信処理を記述
     $('#send').on('click', function () {
@@ -91,12 +91,44 @@
 
    //memo123を切り替えた時の動作
    $("#title").on("change",function(){
+    // window.location.reload()
+    var h = ""
+  $("#output1").html(h); 
+
    const dbRef = ref( db, "kadai202211272"+"/memo/"+$(this).val() ); //Firebaseの構造作る
               onValue(dbRef, function(data){   
-                const msg  = data.val();    //オブジェクトデータを取得し、変数msgに代入
+                 msg  = data.val();    //オブジェクトデータを取得し、変数msgに代入
                 console.log(msg);
                 const key  = data.key;      //データのユニークキー（削除や更新に使用可能）
-                $("#text").val(msg.text);
+                // $("#text").val(msg.text);
+                console.log(msg,'取得したデータの塊')
+  // const key = data.key;
+  // console.log(key,'データの塊にアクセス')w
+
+ 
+  const today = new Date();
+  let year = today.getFullYear();
+  let month = today.getMonth() + 1;
+  let day = today.getDate();
+  let hour = today.getHours();
+  let min = today.getMinutes();
+  let sec = today.getSeconds();
+
+
+  //es6のテンプレートリテラル
+   h = `
+       <div class="msg">
+         <p>${msg.text}</p>
+         <p>${msg.title}</p>
+         <button id="delete">削除</button>
+         <p>${year}年${month}月${day}日${hour}:${min}:${sec}</p>
+      </div>  
+  `;
+   //htmlに埋め込みましょう
+  // append
+   $("#output1").append(h);
+   h = ""
+   msg = ""
             });
         });
 
@@ -107,7 +139,7 @@
    //ここから受信処理が始まります
 
    //登録されたデータを取得します
-  const msg = data.val();
+  // const msg = data.val();
   console.log(msg,'取得したデータの塊')
   const key = data.key;
   console.log(key,'データの塊にアクセス')
@@ -122,17 +154,17 @@
 
 
   //es6のテンプレートリテラル
-  let h = `
-       <div class="msg">
-         <p>${msg.text}</p>
-         <p>${msg.title}</p>
-         <button id="delete">削除</button>
-         <p>${year}年${month}月${day}日${hour}:${min}:${sec}</p>
-      </div>  
-  `;
-   //htmlに埋め込みましょう
-  // append
-   $("#output1").append(h);
+  // let h = `
+  //      <div class="msg">
+  //        <p>${msg.text}</p>
+  //        <p>${msg.title}</p>
+  //        <button id="delete">削除</button>
+  //        <p>${year}年${month}月${day}日${hour}:${min}:${sec}</p>
+  //     </div>  
+  // `;
+  //  //htmlに埋め込みましょう
+  // // append
+  //  $("#output1").append(h);
   })
 
   
