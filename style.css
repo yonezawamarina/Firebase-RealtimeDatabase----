@@ -1,8 +1,4 @@
 
-/* body{
-  background-color: cornsilk;
-} */
-
 
 /* トップ画面 */
 /* Webフォントを定義 */
@@ -78,64 +74,58 @@
 #fileButton {
   /* margin-top: 20px; */
   color: #000;
-  background-color: #fff100;
-  border-bottom: 5px solid #ccc100;
+  background-color: cyan;
+  border-bottom: 5px solid cyan;
 }
 
 #fileButton:hover {
   margin-top: 3px;
   color: #000;
-  background: #fff20a;
-  border-bottom: 2px solid #ccc100;
+  background:  cyan;
+  border-bottom: 2px solid  cyan;
 }
 
 #sitei {
   margin-top: 3px;
   color: #000;
   background-color: gainsboro;
-  border-bottom: 5px solid #ccc100;
+  border-bottom: 5px solid cyan;
 }
 
 #sitei:hover {
   margin-top: 3px;
   color: #000;
-  background: #fff20a;
-  border-bottom: 2px solid #ccc100;
+  background:  cyan;
+  border-bottom: 2px solid  cyan;
 }
 
 #up {
   /* margin-top: 20px; */
   color: #000;
-  background-color: #fff100;
-  border-bottom: 5px solid #ccc100;
+  background-color:  cyan;
+  border-bottom: 5px solid  cyan;
 }
 
 #up:hover {
   margin-top: 3px;
   color: #000;
-  background: #fff20a;
-  border-bottom: 2px solid #ccc100;
+  background:  cyan;
+  border-bottom: 2px solid  cyan;
 }
 
 #down {
   margin-top: 3px;
   color: #000;
-  background-color: #fff100;
-  border-bottom: 5px solid #ccc100;
+  background-color:  cyan;
+  border-bottom: 5px solid  cyan;
 }
 
 #down:hover {
   margin-top: 3px;
   color: #000;
-  background: #fff20a;
-  border-bottom: 2px solid #ccc100;
+  background:  cyan;
+  border-bottom: 2px solid  cyan;
 }
-
-
-
-
-
-
 
 .relative {
   position: relative;
@@ -197,6 +187,67 @@
 }
 
 #output1{
-  background-color: aliceblue;
-  width: 500px;
+position: relative;
+background-color: #fff0cd;
+box-shadow: 0px 0px 0px 5px #fff0cd;
+border: dashed 2px white;
+padding: 0.2em 0.5em;
+color: #454545;
+width: 500px;
+height: 300px;
 }
+
+
+#output1:after{
+  position: absolute;
+  content: '';
+  right: -7px;
+  top: -7px;
+  border-width: 0 15px 15px 0;
+  border-style: solid;
+  border-color: #ffdb88 #fff #ffdb88;
+  box-shadow: -10px 10px 1px rgba(0, 0, 0, 0.15);
+}
+
+
+#output1 p {
+  margin: 0; 
+  padding: 0;
+}
+
+
+#send {
+  color: #000;
+  background-color: cyan;
+  border-bottom: 5px solid  cyan;
+}
+
+#send:hover {
+  margin-top: 3px;
+  color: #000;
+  background:  cyan;
+  border-bottom: 2px solid  cyan;
+}
+
+  .box{
+    width:100%;
+    height:200px;
+  }
+  
+  /* 縦 */
+  .bg_check {
+    background-color: #fff;
+    background-image:
+     linear-gradient(-90deg, #8be4f0 50%, transparent 50%),
+      linear-gradient(#8be4f0 50%, transparent 50%);
+    background-size: 20px 20px;
+  }
+  
+ 
+  /* 半透明色変えチェック */
+  .is-transparent-mix{
+    background-image:
+     linear-gradient(-90deg, rgba(63, 171, 234, 0.5) 50%, transparent 50%),
+      linear-gradient(rgba(253, 68, 119, 0.5) 50%, transparent 50%);
+    background-size: 20px 20px;
+  }

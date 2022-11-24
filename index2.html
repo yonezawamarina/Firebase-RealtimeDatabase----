@@ -4,26 +4,24 @@
 <meta charset="utf-8">
 <title>Firebase_version9_RealtimeDB(G'sACADEMY初学者用サンプル)</title>
 <style>
-  #output {
+  /* #output {
       background: pink;
       height: 300px;
       overflow: scroll;
-  }
+  } */
 </style>
 </head>
 <link rel="stylesheet" href="style.css">
-<body class="body2">
+<body class="box bg_check is-transparent">
 
 <!-- コンテンツ表示画面 -->
-
-    <!-- <div>名前<input type="text" id="uname"></div> -->
 
 <div class="topmemo">
   <div>
     <select id="title">
-      <option value="memo1">memo1</option>
-      <option value="memo2">memo2</option>
-      <option value="memo3">memo3</option>
+      <option value="recipe">recipe</option>
+      <thought value="thought">thought</option>
+      <option value="comment">comment</option>
     </select>    
   </div>
     <div>
@@ -31,6 +29,8 @@
         <button id="send">送信</button>
     </div>
     <div id="output1"></div>
+
+
     <!-- <div id="output2"></div>
     <div id="output3"></div> -->
 </div>
@@ -89,13 +89,15 @@
     });
 
 
+
+
    //memo123を切り替えた時の動作
    $("#title").on("change",function(){
     // window.location.reload()
     var h = ""
   $("#output1").html(h); 
 
-   const dbRef = ref( db, "kadai202211272"+"/memo/"+$(this).val() ); //Firebaseの構造作る
+   const dbRef = ref( db, "kadai202211272"+"/memo/" +$(this).val()); //Firebaseの構造作る
               onValue(dbRef, function(data){   
                  msg  = data.val();    //オブジェクトデータを取得し、変数msgに代入
                 console.log(msg);
@@ -105,7 +107,9 @@
   // const key = data.key;
   // console.log(key,'データの塊にアクセス')w
 
- 
+  // +"/memo/"+$(this).val()
+
+
   const today = new Date();
   let year = today.getFullYear();
   let month = today.getMonth() + 1;
@@ -120,7 +124,7 @@
        <div class="msg">
          <p>${msg.text}</p>
          <p>${msg.title}</p>
-         <button id="delete">削除</button>
+         <button id="delete" name="${key}">削除</button>
          <p>${year}年${month}月${day}日${hour}:${min}:${sec}</p>
       </div>  
   `;
@@ -131,6 +135,34 @@
    msg = ""
             });
         });
+
+  
+  //deleteを押したらdbからデータを削除したいが
+  //なぜか上手くいかない、、、、【課題！】
+ 
+  $(document).on("click", "#delete", function () {;
+
+// buttonのnameを取得してdbのリファレンスを削除します。
+let target = $(this).attr("name");
+// console.log(target);
+alert(target);
+remove(ref(db, "kadai202211272/" + target));
+
+// 画面を更新して反映させます。
+location.reload();
+
+});
+
+
+
+
+    //reloadした時にはmemo1のoutputを表示している
+    // window.location.reload();
+    // $(window).on("load", function(){
+    //   $("#output1").html(h);
+    // })
+
+
 
 
 
